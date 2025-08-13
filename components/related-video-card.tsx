@@ -24,13 +24,13 @@ export function RelatedVideoCard({ video }: RelatedVideoCardProps) {
 
   return (
     <div
-      className="flex gap-2 cursor-pointer group p-2 rounded-lg hover:bg-gray-50 transition-colors"
+      className="flex gap-2 cursor-pointer group p-2 rounded-lg hover:bg-[#2a2a2a] transition-colors duration-200"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Thumbnail */}
       <div className="relative flex-shrink-0">
-        <div className="w-40 h-24 relative rounded-lg overflow-hidden bg-gray-100">
+        <div className="w-40 h-24 relative rounded-lg overflow-hidden bg-gray-800">
           <Image
             src={video.thumbnail || "/placeholder.svg"}
             alt={video.title}
@@ -46,15 +46,11 @@ export function RelatedVideoCard({ video }: RelatedVideoCardProps) {
 
       {/* Video Info */}
       <div className="flex-1 min-w-0">
-        <h3
-          className={`font-medium text-sm leading-5 mb-1 transition-colors duration-200 ${
-            isHovered ? "text-blue-600" : "text-gray-900"
-          }`}
-        >
-          <span className="line-clamp-2">{video.title}</span>
+        <h3 className="font-medium text-sm leading-5 mb-1 transition-colors duration-200">
+          <span className="line-clamp-2 text-white">{video.title}</span>
         </h3>
-        <p className="text-gray-600 text-xs mb-1">{video.channel}</p>
-        <p className="text-gray-600 text-xs">
+        <p className="text-xs mb-1 text-[#aaaaaa]">{video.channel}</p>
+        <p className="text-xs text-[#aaaaaa]">
           {video.views} • {video.timestamp}
         </p>
       </div>
@@ -63,11 +59,11 @@ export function RelatedVideoCard({ video }: RelatedVideoCardProps) {
       <Button
         variant="ghost"
         size="icon"
-        className={`h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex-shrink-0 ${
+        className={`h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex-shrink-0 hover:bg-[#3a3a3a] ${
           isHovered ? "opacity-100" : ""
         }`}
       >
-        <MoreVertical className="h-3 w-3" />
+        <MoreVertical className="h-3 w-3 text-white" />
       </Button>
     </div>
   )

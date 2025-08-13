@@ -10,15 +10,16 @@ export function VideoDetails() {
   const [showFullDescription, setShowFullDescription] = useState(false)
 
   return (
-    <div className="mb-6">
+    <div className="mb-6 yt-font-primary">
       {/* Video Title */}
-      <h1 className="text-xl font-semibold yt-text-primary mb-3 leading-6">
+      <h1 className="yt-text-main-title yt-text-primary mb-3">
         How to Build Amazing Web Applications - Complete Tutorial
       </h1>
 
       {/* Video Stats and Actions */}
       <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-4 text-sm yt-text-secondary">
+        {/* Video Stats */}
+        <div className="flex items-center gap-4 yt-text-metadata yt-text-secondary">
           <span>1,234,567 views</span>
           <span>•</span>
           <span>Dec 15, 2024</span>
@@ -27,24 +28,36 @@ export function VideoDetails() {
         <div className="flex items-center gap-2">
           {/* Like/Dislike */}
           <div className="flex items-center yt-bg-raised rounded-full">
-            <Button variant="ghost" className="rounded-full px-4 py-2 h-9 hover:bg-accent yt-text-primary">
+            <Button
+              variant="ghost"
+              className="rounded-full px-4 py-2 h-9 hover:bg-accent yt-text-primary yt-text-button"
+            >
               <ThumbsUp className="h-4 w-4 mr-2" />
               12K
             </Button>
             <div className="w-px h-6 bg-border" />
-            <Button variant="ghost" className="rounded-full px-4 py-2 h-9 hover:bg-accent yt-text-primary">
+            <Button
+              variant="ghost"
+              className="rounded-full px-4 py-2 h-9 hover:bg-accent yt-text-primary yt-text-button"
+            >
               <ThumbsDown className="h-4 w-4" />
             </Button>
           </div>
 
           {/* Share */}
-          <Button variant="ghost" className="rounded-full px-4 py-2 h-9 yt-bg-raised hover:bg-accent yt-text-primary">
+          <Button
+            variant="ghost"
+            className="rounded-full px-4 py-2 h-9 yt-bg-raised hover:bg-accent yt-text-primary yt-text-button"
+          >
             <Share className="h-4 w-4 mr-2" />
             Share
           </Button>
 
           {/* Download */}
-          <Button variant="ghost" className="rounded-full px-4 py-2 h-9 yt-bg-raised hover:bg-accent yt-text-primary">
+          <Button
+            variant="ghost"
+            className="rounded-full px-4 py-2 h-9 yt-bg-raised hover:bg-accent yt-text-primary yt-text-button"
+          >
             <Download className="h-4 w-4 mr-2" />
             Download
           </Button>
@@ -57,10 +70,10 @@ export function VideoDetails() {
       </div>
 
       {/* Channel Info */}
-      <div className="flex items-start gap-3 p-4 yt-bg-raised rounded-xl">
+      <div className="flex items-start gap-3 p-4 yt-bg-raised rounded-xl bg-[rgba(255,255,255,0.09)]">
         <Link href="/channel/techacademy">
           <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center flex-shrink-0 hover:shadow-md transition-shadow duration-200">
-            <span className="text-white font-semibold">TA</span>
+            <span className="text-white yt-text-body font-medium">TA</span>
           </div>
         </Link>
 
@@ -68,17 +81,17 @@ export function VideoDetails() {
           <div className="flex items-center justify-between mb-2">
             <div>
               <Link href="/channel/techacademy">
-                <h3 className="font-semibold yt-text-primary hover:yt-text-secondary transition-colors">
+                <h3 className="yt-text-body font-medium yt-text-primary hover:yt-text-secondary transition-colors">
                   Tech Academy
                 </h3>
               </Link>
-              <p className="text-sm yt-text-secondary">2.1M subscribers</p>
+              <p className="yt-text-metadata yt-text-secondary">2.1M subscribers</p>
             </div>
 
             <div className="flex items-center gap-2">
               <Button
                 onClick={() => setIsSubscribed(!isSubscribed)}
-                className={`rounded-full px-6 py-2 h-9 font-medium transition-colors ${
+                className={`rounded-full px-6 py-2 h-9 yt-text-button transition-colors ${
                   isSubscribed ? "yt-bg-menu yt-text-primary hover:bg-accent" : "bg-red-600 text-white hover:bg-red-700"
                 }`}
               >
@@ -88,7 +101,7 @@ export function VideoDetails() {
           </div>
 
           {/* Description */}
-          <div className="text-sm yt-text-secondary">
+          <div className="yt-text-metadata yt-text-secondary">
             <p className={showFullDescription ? "" : "line-clamp-2"}>
               Learn how to build amazing web applications from scratch! In this comprehensive tutorial, we'll cover
               everything from setting up your development environment to deploying your finished application. Perfect
@@ -122,7 +135,7 @@ export function VideoDetails() {
             <Button
               variant="ghost"
               onClick={() => setShowFullDescription(!showFullDescription)}
-              className="p-0 h-auto text-sm font-medium yt-text-primary hover:bg-transparent mt-2"
+              className="p-0 h-auto yt-text-metadata font-medium yt-text-primary hover:bg-transparent mt-2"
             >
               {showFullDescription ? "Show less" : "Show more"}
             </Button>

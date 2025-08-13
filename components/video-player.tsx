@@ -127,18 +127,20 @@ export function VideoPlayer() {
 
   return (
     <div className="w-full mb-4">
-      <div className="aspect-video bg-black rounded-xl overflow-hidden">
-        <iframe
-          ref={iframeRef}
-          width="100%"
-          height="100%"
-          src={`https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0&modestbranding=1&enablejsapi=1`}
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          className="w-full h-full"
-        />
+      <div className="relative w-full">
+        <div className="aspect-video bg-black rounded-xl overflow-hidden">
+          <iframe
+            ref={iframeRef}
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0&modestbranding=1&enablejsapi=1`}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="w-full h-full min-h-[200px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px]"
+          />
+        </div>
       </div>
     </div>
   )

@@ -1,23 +1,30 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* YouTube Theme System - Clean Implementation */
 :root {
-  /* Light Theme - Exact Colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f9f9f9;
-  --bg-hover: #f0f0f0;
-  --text-primary: #000000;
-  --text-secondary: #555555;
+  /* Dark Theme - YouTube Dark Mode Exact Match */
+  --bg-primary: #181818;
+  --bg-secondary: #0f0f0f;
+  --bg-hover: #282828;
+  --text-primary: #ffffff;
+  --text-secondary: #aaaaaa;
   --text-tertiary: #888888;
-  --border-color: #dddddd;
-  --border-light: #e5e5e5;
+  --border-color: #303030;
+  --border-light: #404040;
 
-  /* Skeleton colors */
-  --skeleton-base: #f2f2f2;
-  --skeleton-highlight: #f8f9fa;
+  /* Darker skeleton colors */
+  --skeleton-base: #0a0a0a;
+  --skeleton-highlight: #141414;
 
-  /* shadcn/ui default styles */
+  /* Enhanced contrast colors */
+  --card-bg: #212121;
+  --card-hover: #2a2a2a;
+  --input-bg: #212121;
+  --input-border: #404040;
+  --dialog-bg: #212121;
+  --dialog-overlay: rgba(0, 0, 0, 0.8);
+
+  /* shadcn/ui dark styles only */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -54,21 +61,6 @@
 }
 
 .dark {
-  /* Dark Theme - YouTube Dark Mode Exact Match */
-  --bg-primary: #181818;
-  --bg-secondary: #0f0f0f;
-  --bg-hover: #282828;
-  --text-primary: #ffffff;
-  --text-secondary: #aaaaaa;
-  --text-tertiary: #888888;
-  --border-color: #303030;
-  --border-light: #404040;
-
-  /* Skeleton colors */
-  --skeleton-base: #303030;
-  --skeleton-highlight: #404040;
-
-  /* shadcn/ui dark styles */
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.145 0 0);
@@ -143,10 +135,71 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Apply theme colors to body */
-body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Roboto", "Arial", sans-serif;
+  }
+}
+
+/* Typography utility classes following the specification */
+.yt-font-primary {
+  font-family: "Roboto", "Arial", sans-serif;
+}
+
+/* Font sizes */
+.yt-text-main-title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: normal;
+}
+
+.yt-text-section-title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: normal;
+}
+
+.yt-text-body {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: normal;
+}
+
+.yt-text-button {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: normal;
+}
+
+.yt-text-metadata {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: normal;
+}
+
+.yt-text-caption {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: normal;
+}
+
+/* Text colors for dark theme only */
+.yt-text-primary {
+  color: #ffffff;
+}
+
+.yt-text-secondary {
+  color: #aaaaaa;
 }
 
 /* YouTube-style line clamp utility */
@@ -167,33 +220,12 @@ body {
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background: #555;
   border-radius: 4px;
 }
 
 .sidebar::-webkit-scrollbar-thumb:hover {
-  background: #999;
-}
-
-.dark .sidebar::-webkit-scrollbar-thumb {
-  background: #555;
-}
-
-.dark .sidebar::-webkit-scrollbar-thumb:hover {
   background: #777;
-}
-
-/* Enhanced smooth transitions */
-* {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
-    transform, filter, backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 200ms;
-}
-
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
 }
 
 /* Card hover animations - slower and smoother */
@@ -203,10 +235,6 @@ html {
 
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15), 0 10px 20px -5px rgba(0, 0, 0, 0.1);
-}
-
-.dark .card-hover:hover {
   box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4), 0 10px 20px -5px rgba(0, 0, 0, 0.3);
 }
 
@@ -220,16 +248,22 @@ html {
   transform: scale(1.05);
 }
 
-/* Skeleton loading with shimmer */
+/* Custom shimmer animation with much darker colors */
 @keyframes shimmer {
   0% {
-    background-position: -200% 0;
+    transform: translateX(-100%);
   }
   100% {
-    background-position: 200% 0;
+    transform: translateX(100%);
   }
 }
 
+.custom-shimmer {
+  background: linear-gradient(90deg, #0a0a0a 25%, #141414 37%, #0a0a0a 63%);
+  animation: shimmer 1.5s infinite;
+}
+
+/* Skeleton loading with darker shimmer */
 .skeleton-shimmer {
   background: linear-gradient(90deg, var(--skeleton-base) 25%, var(--skeleton-highlight) 50%, var(--skeleton-base) 75%);
   background-size: 200% 100%;
@@ -246,30 +280,15 @@ html {
 .bg-theme-hover {
   background-color: var(--bg-hover);
 }
+.bg-theme-card {
+  background-color: var(--card-bg);
+}
 .text-theme-primary {
   color: var(--text-primary);
 }
 .text-theme-secondary {
   color: var(--text-secondary);
 }
-.text-theme-tertiary {
-  color: var(--text-tertiary);
-}
 .border-theme {
   border-color: var(--border-color);
-}
-.border-theme-light {
-  border-color: var(--border-light);
-}
-
-/* shadcn/ui base styles */
-@layer base {
-  * {
-    border-color: var(--border);
-    outline-color: rgba(var(--ring), 0.5);
-  }
-  body {
-    background-color: var(--background);
-    color: var(--foreground);
-  }
 }

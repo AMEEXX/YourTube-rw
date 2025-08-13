@@ -16,17 +16,17 @@ export default function WatchPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white dark:bg-[#0f0f0f]">
       <Header />
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 p-4 sm:p-6 max-w-[1800px] mx-auto">
-        {/* Main Content */}
-        <div className="flex-1 max-w-none lg:max-w-4xl">
+      <div className="flex flex-col xl:flex-row gap-4 xl:gap-6 p-4 sm:p-6 w-full max-w-[2000px] mx-auto">
+        {/* Main Content - Responsive sizing */}
+        <div className="flex-1 min-w-0 xl:max-w-[calc(100%-424px)]">
           <VideoPlayer />
           {isLoading ? <VideoDetailsSkeleton /> : <VideoDetails />}
         </div>
 
-        {/* Related Videos Sidebar */}
-        <div className="w-full lg:w-[400px] lg:flex-shrink-0">
+        {/* Related Videos Sidebar - Responsive */}
+        <div className="w-full xl:w-[400px] xl:flex-shrink-0">
           <RelatedVideos />
         </div>
       </div>
